@@ -1,0 +1,19 @@
+{
+  "name": "colensodb",
+  "version": "1.0.0",
+  "description": "Web App to view the Colenso XML Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Typhoone/SWEN303_Assig1_V2.git"
+  },
+  "author": "Gordon Adams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Typhoone/SWEN303_Assig1_V2/issues"
+  },
+  "homepage": "https://github.com/Typhoone/SWEN303_Assig1_V2#readme"
+}

@@ -1,5 +1,13 @@
-extends layout
+extends shared/layout
 
 block content
   h1= title
   p Welcome to #{title}
+  br
+  form(action='/processXq', method='get')
+     fieldset.form-group
+       label(for='searchFeild') XQuery
+       input#searchFeild.form-control(type='text', placeholder='XQuery' name ='searchFeild')
+       small.text-muted Please enter a Query in the XQuery format
+     button.btn.btn-primary(type='submit') Submit
+  

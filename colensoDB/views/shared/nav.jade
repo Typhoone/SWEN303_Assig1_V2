@@ -8,9 +8,14 @@
           a.navbar-brand(href='/') Colenso
       #letterdb-navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-              li.active
+              li.Colenso
                   a(href='/') Home
-              li
+              li.Search
                   a(href='/search') Search
-              li
+              li.Other
                   a(href='/contact') Something else
+script().
+  elem = document.getElementsByClassName('#{title}');
+  if(elem.length > 0){
+    elem[0].classList.add('active');
+  }

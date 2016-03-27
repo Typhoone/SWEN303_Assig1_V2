@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/search', function(req, res, next) {
-  res.render('search', { title: 'Colenso Search' });
+  res.render('search', { title: 'Search' });
 });
 
 router.post('/processXq', function(req, res, next) {
@@ -20,10 +20,12 @@ router.post('/processXq', function(req, res, next) {
   var value;
 
   client.execute(query, function(err, reslt){
-    if(err){
-      value = "No results found \n ERROR: " + err;
-    }else{
-      value = reslt.result;
+    if(req.body.searchField){
+      if(err){
+        value = "No results found \n ERROR: " + err;
+      }else{
+        value = reslt.result;
+      }
     }
     res.render('results', {title : 'Results', val : value})
   });

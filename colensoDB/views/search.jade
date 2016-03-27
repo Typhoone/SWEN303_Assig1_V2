@@ -4,10 +4,10 @@ block content
   h1= title
   p Welcome to #{title}
   br
-  form(action='/processXq', method='get')
+  form(action='/processXq', method='post')
      fieldset.form-group
-       label(for='searchFeild') XQuery
-       input#searchFeild.form-control(type='text', placeholder='XQuery' name ='searchFeild')
+       label(for='searchField') XQuery
+       input#searchFeild.form-control(type='text', placeholder='XQuery' name ='searchField')
        small.text-muted Please enter a Query in the XQuery format
      button.btn.btn-primary(type='submit') Submit
   

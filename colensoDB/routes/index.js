@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var basex = require('basex');
 var client = new basex.Session("127.0.0.1", 1984, "admin", "admin");
+var fs = require('fs');
+var parseString = require('xml2js').parseString;
 
 client.execute("OPEN Colenso");
 
@@ -33,7 +35,16 @@ router.post('/processXq', function(req, res, next) {
   });
 
   router.get('/viewFile', function(req, res, next) {
-    res.render('viewFile', { title: 'fileName', filePath: '../Colenso/' + req.query.file });
+    fs.readFile('../Colenso/' + req.query.file, function(err, data){
+      if(err) {
+        throw err;
+      }
+      parseString(data.toString(), function (err, result) {
+        res.render('viewFile', { title: 'fileName', filePath: '../Colenso/' + req.query.file, data : result});
+      });
+
+    });
+
   });
 
   router.get('/viewRaw', function(req, res, next) {

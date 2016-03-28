@@ -62,7 +62,7 @@ PARSEPROJ = true
 AUTO = true
 FILES = *.xml, *.xq*
 HIDDENFILES = true
-SEARCHMODE = 0
+SEARCHMODE = 1
 FILTERRT = false
 EXECRT = false
 DBNAME = 
@@ -93,7 +93,24 @@ REPLACED = 0
 
 # History
 COMMANDS = 0
-SEARCH = 0
-XQUERY = 0
+SEARCH = 5
+SEARCH1 = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0'; " + "//name[@type = 'place' and position() = 1 and . = 'Manawarakau']"
+SEARCH2 = //name
+SEARCH3 = 
+SEARCH4 = //title
+SEARCH5 = /*
+XQUERY = 12
+XQUERY1 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //author/name[@type = 'person']
+XQUERY2 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //author/name[@type != 'person']
+XQUERY3 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //author/name
+XQUERY4 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //author/name[type = 'person']
+XQUERY5 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //author/name[type != 'person']
+XQUERY6 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //author
+XQUERY7 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //author[@type = 'person']
+XQUERY8 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //author[@type != 'person']
+XQUERY9 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; /*
+XQUERY10 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; 
+XQUERY11 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; /title
+XQUERY12 = declare default element namespace 'http://www.tei-c.org/ns/1.0'; //name
 
 # Local Options

@@ -1,4 +1,4 @@
-.navbar.navbar-inverse.navbar-fixed-top
+.navbar.navbar-default.navbar-fixed-top
   .container-fluid
       .navbar-header
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='#letterdb-navbar')
@@ -14,8 +14,11 @@
                   a(href='/search') Search
               li.Other
                   a(href='/contact') Something else
-script().
-  elem = document.getElementsByClassName('#{title}');
-  if(elem.length > 0){
-    elem[0].classList.add('active');
-  }
+//- extends ../../node_modules/jade-bootstrap/_bootstrap
+//- 
+//- block body
+//-   +navbar-fixed("Colenso", "dropdown_menu")
+//-     +nav_item("/", "Colenso") Home
+//-     +nav_item("/search", "Search") Search
+//-     +nav_item("/contact", "Other") Something Else
+  

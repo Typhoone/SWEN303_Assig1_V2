@@ -3,7 +3,14 @@ html(lang="en")
   head
     title= title
     include imports
+    include nav
+    
     
   body
-    include nav
+    //- span.glyphicon.glyphicon-search(aria-hidden="true")
+    script().
+      elem = document.getElementsByClassName('#{title}');
+      if(elem.length > 0){
+        elem[0].classList.add('active');
+      }
     block content

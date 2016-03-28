@@ -4,8 +4,24 @@ block content
   h1= title
   p Welcome to #{title}
   br
-  if val
-    p #{val}
-  else
+  if !val
     p no results were found
-  
+  else
+    -vals = [];
+    -for(var index = 0; index<val.length; index++)
+      -vals.push(val[index])
+    .row
+      each val in vals
+        -authour = val.split('/')[0]
+        -type = val.split('/')[1]
+        -fileName = val.split('/')[2]
+        .col-xs-3
+          .card
+            .card-block
+              h4.card-title= fileName
+              p.card-text Authour: #{authour}
+              p.card-text Type:  #{type}
+              a(href = '#').btn.btn-primary View
+              a(href = '#').btn.btn-primary 
+                span.glyphicon.glyphicon-download
+            

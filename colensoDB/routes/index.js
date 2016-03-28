@@ -16,7 +16,9 @@ router.get('/search', function(req, res, next) {
 });
 
 router.post('/processXq', function(req, res, next) {
-  var query = "XQUERY declare default element namespace 'http://www.tei-c.org/ns/1.0'; " + req.body.searchField;
+  // var query = "XQUERY declare namespace tei= 'http://www.tei-c.org/ns/1.0'; " + req.body.searchField;
+  var query = 'XQUERY declare default element namespace "http://www.tei-c.org/ns/1.0"; for $n in ('+ req.body.searchField +')\n' +
+                 'return db:path($n)';
   var value;
 
   client.execute(query, function(err, reslt){
@@ -24,7 +26,7 @@ router.post('/processXq', function(req, res, next) {
       if(err){
         value = "No results found \n ERROR: " + err;
       }else{
-        value = reslt.result;
+        value = reslt.result.split('\r\n');
       }
     }
     res.render('results', {title : 'Results', val : value})

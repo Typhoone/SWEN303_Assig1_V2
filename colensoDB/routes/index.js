@@ -32,6 +32,14 @@ router.post('/processXq', function(req, res, next) {
     res.render('results', {title : 'Results', val : value})
   });
 
+  router.get('/viewFile', function(req, res, next) {
+    res.render('viewFile', { title: 'fileName', filePath: '../Colenso/' + req.query.file });
+  });
+
+  router.get('/viewRaw', function(req, res, next) {
+    res.download('../Colenso/' + req.query.file);
+  });
+
 
 
 });

@@ -14,14 +14,14 @@ block content
       each val in vals
         -authour = val.split('/')[0]
         -type = val.split('/')[1]
-        -fileName = val.split('/')[2]
+        -fileName = val.split('/')[2].split('.')[0]
         .col-xs-3
           .card
             .card-block
               h4.card-title= fileName
               p.card-text Authour: #{authour}
               p.card-text Type:  #{type}
-              a(href = '#').btn.btn-primary View
-              a(href = '#').btn.btn-primary 
+              a(href = 'viewFile?file=' + val).btn.btn-primary View
+              a(href = 'viewRaw?file=' + val).btn.btn-primary 
                 span.glyphicon.glyphicon-download
             

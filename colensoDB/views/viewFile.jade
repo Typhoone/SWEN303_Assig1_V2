@@ -2,10 +2,15 @@ extends shared/layout
 
 block content
   h1= title
-  p Welcome to #{title}
   br
-  script.
-   var data = !{JSON.stringify(data)}
+  h4 Author: #{author}
+  p= date
+  .front !{front}
+  .body !{body}
+  a(href = 'viewRaw?file=' + fileName).btn.btn-primary
+    span.glyphicon.glyphicon-download
+  
+   
   
     
   

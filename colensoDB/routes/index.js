@@ -3,7 +3,7 @@ var router = express.Router();
 var basex = require('basex');
 var client = new basex.Session("127.0.0.1", 1984, "admin", "admin");
 var fs = require('fs');
-var parseString = require('xml2js').parseString;
+var cheerio = require('cheerio');
 
 client.execute("OPEN Colenso");
 
@@ -23,6 +23,37 @@ router.post('/processXq', function(req, res, next) {
                  'return db:path($n)';
   var value;
 
+
+
+  router.get('/viewFile', function(req, res, next) {
+    fs.readFile('../Colenso/' + req.query.file, function(err, data){
+      if(err) {
+        throw err;
+      }
+      $ = cheerio.load(data);
+
+      title= $('title').text();
+      author= $('author').text();
+      date= $('date').text();
+      front= $('front');
+      body= $('body');
+
+
+
+
+      res.render('viewFile', { fileName:  req.query.file, filePath: '../Colenso/' + req.query.file, title : title, author : author, date : date, front : front, body : body});
+
+
+    });
+
+  });
+
+  router.get('/viewRaw', function(req, res, next) {
+    res.download('../Colenso/' + req.query.file);
+  });
+
+  // In event of not found
+
   client.execute(query, function(err, reslt){
     if(req.body.searchField){
       if(err){
@@ -33,25 +64,6 @@ router.post('/processXq', function(req, res, next) {
     }
     res.render('results', {title : 'Results', val : value})
   });
-
-  router.get('/viewFile', function(req, res, next) {
-    fs.readFile('../Colenso/' + req.query.file, function(err, data){
-      if(err) {
-        throw err;
-      }
-      parseString(data.toString(), function (err, result) {
-        res.render('viewFile', { title: 'fileName', filePath: '../Colenso/' + req.query.file, data : result});
-      });
-
-    });
-
-  });
-
-  router.get('/viewRaw', function(req, res, next) {
-    res.download('../Colenso/' + req.query.file);
-  });
-
-
 
 });
 

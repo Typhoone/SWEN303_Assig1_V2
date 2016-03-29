@@ -1,3 +1,3 @@
 @echo off
-start runBaseX.bat
 start runNode.bat
+call basex/bin/basexserver.bat -d

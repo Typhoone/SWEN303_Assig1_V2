@@ -7,21 +7,48 @@ block content
   if !val
     p no results were found
   else
+    -vals2d = [];
+    -count = 4;
     -vals = [];
     -for(var index = 0; index<val.length; index++)
+      -if(!vals2d[index/count | 0])
+        -vals2d[index/count | 0] = [];
+      -vals2d[index/count | 0].push(val[index])
+            
       -vals.push(val[index])
-    .row
-      each val in vals
-        -authour = val.split('/')[0]
-        -type = val.split('/')[1]
-        -fileName = val.split('/')[2].split('.')[0]
-        .col-xs-3
-          .card
-            .card-block
-              h4.card-title= fileName
-              p.card-text Authour: #{authour}
-              p.card-text Type:  #{type}
-              a(href = 'viewFile?file=' + val).btn.btn-primary View
-              a(href = 'viewRaw?file=' + val).btn.btn-primary 
-                span.glyphicon.glyphicon-download
+      
+    .container-fluid
+      each row in vals2d
+        .row
+          each val in row
+            -authour = val.split('/')[0]
+                -type = val.split('/')[1]
+                -fileName = val.split('/')[2].split('.')[0]
+                .col-md-3
+                  .card(onclick ='window.location="viewFile?file=' + val + '"')
+                    .card-block
+                      h4.card-title= fileName
+                      p.card-text Authour: #{authour}
+                      p.card-text Type:  #{type}
+                      .row
+                        .col-md-8.noPad
+                          a(href = 'viewFile?file=' + val).btn.btn-primary.btn-block View
+                        .col-md-4.noPad
+                          a(href = 'viewRaw?file=' + val).btn.btn-primary.btn-block 
+                            span.glyphicon.glyphicon-download
+          
+      //- .row
+      //-   each val in vals
+      //-     -authour = val.split('/')[0]
+      //-     -type = val.split('/')[1]
+      //-     -fileName = val.split('/')[2].split('.')[0]
+      //-     .col-xs-3
+      //-       .card
+      //-         .card-block
+      //-           h4.card-title= fileName
+      //-           p.card-text Authour: #{authour}
+      //-           p.card-text Type:  #{type}
+      //-           a(href = 'viewFile?file=' + val).btn.btn-primary View
+      //-           a(href = 'viewRaw?file=' + val).btn.btn-primary 
+      //-             span.glyphicon.glyphicon-download
             

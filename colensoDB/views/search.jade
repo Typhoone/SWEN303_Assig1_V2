@@ -7,13 +7,18 @@ block content
   form(action='/processSimple', method='post')
      fieldset.form-group
        label(for='searchField') Basic Text
-       input#searchFeild.form-control(type='text', placeholder='Search with/out logical operators (AND, OR, NOT)' name ='searchField')
+       input#searchFeild.form-control(type='text', placeholder='Text' name ='searchField')
        small.text-muted Please enter a Query in the Text format
+       br
+       small.text-muted A possible search would be 'native'ftand'trees'
      button.btn.btn-primary(type='submit') Submit
+  br
   form(action='/processXq', method='post')
      fieldset.form-group
        label(for='searchField') XQuery
        input#searchFeild.form-control(type='text', placeholder='XQuery' name ='searchField')
        small.text-muted Please enter a Query in the XQuery format
+       br
+       small.text-muted A possible query would be //name[@type = 'place' and position() = 1 and . = 'Manawarakau']
      button.btn.btn-primary(type='submit') Submit
   

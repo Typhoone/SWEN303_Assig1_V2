@@ -18,22 +18,23 @@ router.get('/search', function(req, res, next) {
 });
 
 function runQuery(query, req, res){
+  console.log('/********************************************query*******************************\\');
+  console.log(query);
   var value;
 
   client.execute(query, function(err, reslt){
-    if(req.body.searchField){
-      if(err || reslt.ok === false || !(reslt.result.length > 0)){
-        value = "No results found ";
-        if(err){
-          value += "<br> ERROR: " + err;
-        }else{
-          err = 'not found';
-        }
+    if(err || reslt.ok === false || !(reslt.result.length > 0)){
+      value = "No results found ";
+      if(err){
+        value += "<br> ERROR: " + err;
       }else{
-        value = reslt.result.split('\r\n');
-
+        err = 'not found';
       }
+    }else{
+      value = reslt.result.split('\r\n');
+
     }
+
 
     res.render('results', {title : 'Results', val : value, err : err})
   });
@@ -46,11 +47,17 @@ router.post('/processXq', function(req, res, next) {
   runQuery(query, req, res);
 });
 
+router.get('/explore', function(req, res, next) {
+  // var query = "XQUERY declare namespace tei= 'http://www.tei-c.org/ns/1.0'; " + req.body.searchField;
+  var query = 'XQUERY declare default element namespace "http://www.tei-c.org/ns/1.0"; for $n in (*)\n' +
+                 'return db:path($n)';
+  runQuery(query, req, res);
+});
+
 router.post('/processSimple', function(req, res, next) {
   // var query = "XQUERY declare namespace tei= 'http://www.tei-c.org/ns/1.0'; " + req.body.searchField;
   var query = 'XQUERY declare default element namespace "http://www.tei-c.org/ns/1.0"; for $v in .//TEI[. contains text ' + req.body.searchField + '] return db:path($v)';
-  console.log('/********************************************query*******************************\\');
-  console.log(query);
+
   runQuery(query, req, res);
 });
 

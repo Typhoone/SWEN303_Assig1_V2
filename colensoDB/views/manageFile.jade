@@ -1,0 +1,42 @@
+extends shared/layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  br
+  form(action='/replaceFile', method='post')
+    fieldset.form-group
+      label(for = 'author') Author
+      if author
+        textarea(readonly, name="author", rows="1", cols="40").form-control.noresize #{author}
+      else
+      textarea(name="author", rows="1", cols="40").form-control.noresize
+    fieldset.form-group
+      label(for = 'type') Type
+      if type
+        textarea(readonly, name="type", rows="1", cols="40").form-control.noresize #{type}
+      else
+        select(name = 'type').form-control
+          option diary
+          option newspaper_letters
+          option private_letters
+          option publications
+    fieldset.form-group
+      label(for = 'name') File Name
+      if name
+        textarea(readonly, name="name", rows="1", cols="40").form-control.noresize #{name}
+      else
+        textarea(name="name", rows="1", cols="40").form-control.noresize
+        
+      
+    fieldset.form-group
+      label(for='xml') XML
+      if oldXML
+        textarea(name="xml", rows="8", cols="40").form-control.vresize !{oldXML}
+      else
+        textarea(name="xml", rows="8", cols="40").form-control.vresize
+  
+       
+       
+     button.btn.btn-primary(type='submit') Submit
+  

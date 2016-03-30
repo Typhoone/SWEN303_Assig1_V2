@@ -7,6 +7,10 @@ var cheerio = require('cheerio');
 
 client.execute("OPEN Colenso");
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,9 +21,54 @@ router.get('/search', function(req, res, next) {
   res.render('search', { title: 'Search' });
 });
 
+router.get('/manageFile', function(req, res, next) {
+  res.render('manageFile', { title: 'XML control' });
+});
+
+router.post('/replaceFile', function(req, res, next) {
+  author = req.body.author;
+  author.replaceAll('/', '');
+  if(!author){
+    author = "Unknown"
+  }
+  author += '/'
+
+  type = req.body.type;
+  type.replaceAll('/', '');
+
+  if(!type){
+    type = 'Unknown'
+  }
+  type += '/'
+
+  xml = req.body.xml;
+  if(!xml){
+    xml = '<?xml version=\'1.0\' encoding=\'utf-8\'?>\n<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="PrL-0106">\n</TEI>'
+  }
+
+  name = req.body.name;
+  author.replaceAll('.xml', '');
+  if(!name){
+    name = 'Unknown'
+  }
+  name += '.xml'
+
+  console.log(author + type + name);
+
+  console.log(xml);
+
+  //makes file
+  //writes to file
+  //run xquery replace to either add or update file
+  //ADD TO temp/one.xml input.xml
+
+
+  res.render('index', { title: 'Colenso' });
+});
+
+
+
 function runQuery(query, req, res){
-  console.log('/********************************************query*******************************\\');
-  console.log(query);
   var value;
 
   client.execute(query, function(err, reslt){
@@ -36,7 +85,7 @@ function runQuery(query, req, res){
     }
 
 
-    res.render('results', {title : 'Results', val : value, err : err})
+    res.render('results', {title : 'Results', val : value, err : err, query : query})
   });
 }
 

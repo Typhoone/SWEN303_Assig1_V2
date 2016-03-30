@@ -30,3 +30,12 @@ note {
   padding:0 9px 0 9px !important;
   margin: 0 !important;
 }
+
+
+.noresize {
+  resize: none;
+}
+
+.vresize {
+  resize: vertical;
+}

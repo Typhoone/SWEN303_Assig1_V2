@@ -2,10 +2,9 @@ extends shared/layout
 
 block content
   h1= title
-  p Welcome to #{title}
   br
-  if !val
-    p no results were found
+  if err
+    p=val
   else
     -vals2d = [];
     -count = 4;

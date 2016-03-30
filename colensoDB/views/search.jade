@@ -4,6 +4,12 @@ block content
   h1= title
   p Welcome to #{title}
   br
+  form(action='/processSimple', method='post')
+     fieldset.form-group
+       label(for='searchField') Basic Text
+       input#searchFeild.form-control(type='text', placeholder='Search with/out logical operators (AND, OR, NOT)' name ='searchField')
+       small.text-muted Please enter a Query in the Text format
+     button.btn.btn-primary(type='submit') Submit
   form(action='/processXq', method='post')
      fieldset.form-group
        label(for='searchField') XQuery
